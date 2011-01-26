@@ -1,0 +1,32 @@
+Check SNMP Cisco Traffic
+------------------------
+
+Check Traffic Usage of an Interface on a Cisco Device
+Check Traffic Usage of an Interface on a Cisco Device
+
+This is a bit tricky, because cisco's snmp counter are independent from the cli output.
+The snmp counters can't be reset at runtime, they online reset themself at reboot.
+So in addition to the snmp values we get, we need to calculate....
+
+We save the last check results/sums in a text file so make sure you set "tmpfile" below.
+Please create it, fill in 4 zeros and make sure it is writable by the user that nagios runs as
+
+$ touch /home/nagios/check_snmp_cisco_traffic.txt
+$ echo 0 0 0 0> /home/nagios/check_snmp_cisco_traffic.txt
+$ chown nagios:nagios /home/nagios/check_snmp_cisco_traffic.txt
+
+This plugin currently only uses HC/64bit counter, because 32bit begin from zero too often.
+You also have to find out the interface number yourself, i don't, yet, want the script to
+search for it every runtime. Just snmpwalk your device like this:
+
+$ snmpwalk -v2c -c community-string HOST 1.3.6.1.2.1.31.1.1.1.1
+IF-MIB::ifName.1 = STRING: Fa0
+This -^- is the interface-number
+
+Version 0.1, Copyright (c) 2008 by Michael Boehm
+
+TODO:
+-testing
+-maybe accepting Interface descriptions as argument
+-maybe include check for 32bit counter
+

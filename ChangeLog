@@ -1,0 +1,11 @@
+check_snmp_cisco_traffic (0.1)
+
+ * The Plugin implemented using the shell...
+
+ -- Michael Boehm <dudleyperkins@gmail.com> Wed, 26 Jan 2011 16:20:16 +0100
+
+check_snmp_cisco_traffic.pl (0.1.1)
+
+  * Rewrite into Perl (less load due forks)
+
+ -- Václav Ovsík <vaclav.ovsik@gmail.com> Wed, 26 Jan 2011 16:20:16 +0100
